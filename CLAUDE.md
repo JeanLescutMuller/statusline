@@ -10,7 +10,12 @@ Not to be confused with `03_tools/notify/`, which handles a different surface (t
 - **Deployed copy**: `~/.claude/statusline-command.sh` — Claude Code invokes this path directly, not this gDrive one.
 - **Wiring**: `~/.claude/settings.json` → `"statusLine": {"type": "command", "command": "bash $HOME/.claude/statusline-command.sh", ...}`
 
-After editing the source here, redeploy:
+### Fresh install (new machine)
+
+`./install.sh` — copies the script to `~/.claude/statusline-command.sh`, `chmod +x`s it, and merges the `statusLine` block into `~/.claude/settings.json` (via `jq`, preserving any existing keys; backs up to `settings.json.bak` first). Idempotent — safe to re-run. Requires `jq`. Warns (doesn't block) if run on non-macOS, since the memory segment is macOS-only — see "Known quirks" below.
+
+### Redeploy after an edit (already-installed machine)
+
 ```bash
 cp statusline-command.sh ~/.claude/statusline-command.sh
 chmod +x ~/.claude/statusline-command.sh
