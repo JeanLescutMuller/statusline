@@ -85,7 +85,9 @@ if git -C "$CWD" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   GIT_SEG="    ${GRAY_3}🌿 ${BRANCH}${DIFF_STR:+ (${DIFF_STR})}${RESET}"
 fi
 
-echo -e "${GRAY_1}🤖 ${MODEL_STR}${RESET}    ${GRAY_2}📂 ${CWD}${RESET}${GIT_SEG}"
+DATETIME=$(date '+%m/%d %H:%M:%S')
+
+echo -e "${GRAY_1}🤖 ${MODEL_STR}${RESET}    ${GRAY_2}📂 ${CWD}${RESET}${GIT_SEG}    ${GRAY_4}${DATETIME}${RESET}"
 
 # --- line 2: session UUID (far left, for crash recovery) | session title | shell pid ---
 TITLE_SEG=""
